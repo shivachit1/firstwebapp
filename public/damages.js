@@ -86,13 +86,3 @@ function deleteDamage(damageId){
   method: 'DELETE' 
 }); 
 }
-
-
-function loggedin(){
-  console.log("Logged IN");
-  fetch(url+"/auth/google/redirect", { 
-  method: 'GET'
-  
-}); 
-window.location = newUrl;
-}
