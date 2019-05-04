@@ -1,5 +1,5 @@
 const ul = document.getElementById("damages");
-const url = 'http://localhost:3000/damages';
+const url = 'https://damreporter.herokuapp.com/damages';
 
 fetch(url).then(response => {
     return response.json();
