@@ -6,7 +6,8 @@ router.get('/', (req, res) => {
    const value = req.session.token;
     if (value) {
         res.cookie('token', value);
-        console.log(value); 
+        console.log(value);
+       res.sendFile( path.join(__dirname, '../public/reportdamage.html')); 
     } else {
         res.cookie('token', '')
         console.log('Kaisi hey');
