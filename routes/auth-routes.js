@@ -25,7 +25,7 @@ router.get('/google',passport.authenticate('google',{
 router.get('/google/redirect',passport.authenticate('google'), (req,res) =>{
     req.session.token = req.session.passport.user;
     //res.redirect('/reportdamage');
-    res.send("Welcome User"+ req.session.token);
+    res.send("Welcome User");
    
 });
 

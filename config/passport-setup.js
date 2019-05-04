@@ -16,7 +16,7 @@ passport.deserializeUser((id,done) =>{
 passport.use(
     new GoogleStrategy({
         // option for google strat
-        callbackURL:'https://damreporter.herokuapp.com/'+'auth/google/redirect',
+        callbackURL:'https://damreporter.herokuapp.com'+'/auth/google/redirect',
         clientID:keys.google.clientID,
         clientSecret:keys.google.clientSecret
 
