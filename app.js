@@ -37,20 +37,6 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// create home page view
-app.use(express.static('public'));
-app.use('/images',express.static('images'));
-
-
-// set up routes
-app.use('/auth',authRoutes);
-
-// set up profile
-app.use('/reportdamage',reportRoutes);
-
-// set up profile
-app.use('/damages',damageRoutes);
 app.use((req, res, next) => {
     if (process.env.NODE_ENV === 'production') {
         if (req.headers['x-forwarded-proto'] !== 'https'){
@@ -65,6 +51,19 @@ app.use((req, res, next) => {
     } else
         return next();
 });
+// create home page view
+app.use(express.static('public'));
+app.use('/images',express.static('images'));
+
+
+// set up routes
+app.use('/auth',authRoutes);
+
+// set up profile
+app.use('/reportdamage',reportRoutes);
+
+// set up profile
+app.use('/damages',damageRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
