@@ -54,6 +54,15 @@ app.use('/damages',damageRoutes);
 
 
 
- 
+if (process.env.NODE_ENV === 'production') {
+    if (req.headers['x-forwarded-proto'] != 'https') {
+        return res.redirect('https://' + req.headers.host + req.url);
+    } else {
+        return next();
+    }
+} else {
+    return next();
+}
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);

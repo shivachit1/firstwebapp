@@ -10,5 +10,6 @@ module.exports ={
     },
     session:{
         cookieKey:'435322'
-    }
+    },
+    absoluteURI:'https://damreporter.herokuapp.com'
 };
