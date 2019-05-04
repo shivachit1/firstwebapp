@@ -24,8 +24,9 @@ router.get('/google',passport.authenticate('google',{
 //callback route for google ro redirect to
 router.get('/google/redirect',passport.authenticate('google'), (req,res) =>{
     req.session.token = req.session.passport.user;
-    //res.redirect('/reportdamage');
-    res.sendFile( path.join(__dirname, '../public/reportdamage.html')); 
+    res.redirect('/');
+    //req.session.redirectTo = '/reportdamage';
+    //res.sendFile( path.join(__dirname, '../public/reportdamage.html')); 
    
 });
 

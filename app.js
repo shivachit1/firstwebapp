@@ -38,7 +38,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 // create home page view
 app.use(express.static('public'));
 app.use('/images',express.static('images'));
@@ -52,6 +51,7 @@ app.use('/reportdamage',reportRoutes);
 
 // set up profile
 app.use('/damages',damageRoutes);
+
 
 
  
