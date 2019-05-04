@@ -51,18 +51,20 @@ app.use('/reportdamage',reportRoutes);
 
 // set up profile
 app.use('/damages',damageRoutes);
-
-
-
-if (process.env.NODE_ENV === 'production') {
-    if (req.headers['x-forwarded-proto'] != 'https') {
-        return res.redirect('https://' + req.headers.host + req.url);
-    } else {
+app.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        if (req.headers['x-forwarded-proto'] !== 'https'){
+            // the instructions to perform redirection will be located here
+        }
+            
+        else{
+        // if https is already being used, we simply move on to the next phase in the app's logic cycle
+        return next(); 
+        }
+           
+    } else
         return next();
-    }
-} else {
-    return next();
-}
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT);
