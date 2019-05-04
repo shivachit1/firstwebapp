@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+        <head>    
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <script src="damages.js">
+        </script>
+         
+</head>
+<body>
+        <div class="profileview">
+                <img src="../images/avatar.png" width="50" height="50">
+                <h4>User Profile</h4>
+                
+        </div>
+        <div class="center">
+                <ul id="menu">
+                        <li><a href="/auth/logout">Logout</a></li>
+                        <li><a href="damages.html">Damages</a></li>
+                        <li><a href="reportdamage.html">Report Damage</a></li>
+                      </ul> 
+        </div>
+        
+        <div class="form">
+        <div class="centered">
+                
+                <h4 id="messageText">Report Damage</h4>
+                <div id="messageDiv">
+                        <a id="link1" href = "damages.html">Show Damages List</a></br>
+                        <a id="link2" href = "reportdamage.html">Submit other Damage</a>
+                </div>
+                <form id="damageform" action="/damages" method="POST">
+                    Title:<br>
+                    <input type="text" name="damageTitle" id="damageTitle" placeholder="Damage Title" required>
+                    <br>
+                    Description:<br>
+                    <input type="text" name="description" id="description" placeholder="Description" required>
+                    <br>
+                    Condition:<br>
+                    <input type="text" name="condition" id="condition" placeholder="low/medium/high" required>
+                    <br><br>
+                    <input type="submit" value="SEND POST" onclick="showThankyou()">
+                  </form> 
+        </div>
+</div>
+<div class="footer">
+    <h6>Damage Reporter Web Application</h6>
+</div>
+
+ 
+</body>
+
+</html>

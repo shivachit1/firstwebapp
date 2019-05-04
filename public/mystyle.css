@@ -1,0 +1,61 @@
+
+.profileview {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+
+}
+.center {
+    margin: auto;
+    text-align: center;
+    padding: 40px;
+
+}
+
+.form {
+    margin: auto;
+    text-align: center;
+    border: 3px solid green;
+    width: 30%;
+    height: 30%;
+    padding: 10px;
+    margin-top: 20px;
+
+}
+
+
+ul#menu li {
+    display:inline;
+    border: 2px solid green;
+    margin:20px;
+    padding: 5px;
+  }
+
+ 
+ .footer {
+    bottom:10px;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    padding: 40px;
+    height: 40px;
+    width:100%;
+    background:#6cf;
+
+}
+
+#link1,#link2
+{
+  display:none
+}
+
+
+#reportdamage{
+   
+         position: fixed;
+         bottom: 25px;
+         right: 25px;
+   
+}
+
+  
