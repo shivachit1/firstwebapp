@@ -73,10 +73,8 @@ return parent.appendChild(el);
 
 function updateDamage(damageId){
   console.log("Updating Damage:"+damageId);
-  $("#damageform").attr("method", "PUT");
   fetch(url+"/"+damageId, { 
-    method: 'UPDATE'
-
+    method: 'PUT'
 }); 
   
 }
@@ -86,3 +84,13 @@ function deleteDamage(damageId){
   method: 'DELETE' 
 }); 
 }
+
+
+fetch('/damages', {
+  method: 'put',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    'name': 'Darth Vader',
+    'quote': 'I find your lack of faith disturbing.'
+  })
+})

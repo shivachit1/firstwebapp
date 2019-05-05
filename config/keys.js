@@ -6,7 +6,7 @@ module.exports ={
         clientSecret:'lglx0nlZSD9itwnbyPMOVnz9'
     },
     
-        MONGODB_URI:'mongodb+srv://shivachit1:Duckpunk12@damagereporter-wm0ak.mongodb.net/test?retryWrites=true'
+        MONGODB_URI:'mongodb+srv://shivachit:Duckpunk12@damagereporter-wm0ak.mongodb.net/test?retryWrites=true'
     ,
     session:{
         cookieKey:'435322'
