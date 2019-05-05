@@ -26,7 +26,7 @@ mongoose.connect(keys.MONGODB_URI,{ useNewUrlParser: true }, (err) => {
 
 
 //To extract form data, middleware is used, provided by Express
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieSession({
     maxAge:24*60*60*1000,
