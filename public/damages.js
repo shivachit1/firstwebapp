@@ -1,5 +1,7 @@
 const ul = document.getElementById("damages");
 const url = 'http://localhost:3000/damages';
+let IDdamage=null;
+
 
 fetch(url).then(response => {
     return response.json();
@@ -14,12 +16,15 @@ fetch(url).then(response => {
          let edit = createNode('div');
          
 
-         div.innerHTML = `<p>Damage title: ${damage.damageTitle}</p>
+         div.innerHTML = 
+        `<p>Damage title: ${damage.damageTitle}</p>
          <p>Description: ${damage.description}</p>
          <p>Condition : ${damage.condition}</p>
          <p>Posted by : ${damage.userID}</p>`;
 
-         edit.innerHTML = `<a href="" onclick="updateDamage('${damage._id}')">Update</a>  <a href=""onclick="deleteDamage('${damage._id}')">Delete</a></br></br>`;
+         edit.innerHTML = 
+         `<a  onclick="updateDamage('${damage._id}')">Update</a> 
+          <a  onclick="deleteDamage('${damage._id}')">Delete</a></br></br>`;
          
 
          node.appendChild(div);
@@ -71,26 +76,62 @@ return parent.appendChild(el);
    
 }
 
+
+
 function updateDamage(damageId){
-  console.log("Updating Damage:"+damageId);
-  fetch(url+"/"+damageId, { 
-    method: 'PUT'
-}); 
+  let container = document.getElementById("update-container");
+  let damagesList = document.getElementById("damageslist-container");
+  let damageTitle = document.getElementById("damageTitle");
+  let description = document.getElementById("description");
+  let condition = document.getElementById("condition");
+  container.style.display = "block";
+  damagesList.style.display = "none";
   
-}
-function deleteDamage(damageId){
-  console.log("Deleting Damage: "+ damageId);
-  fetch(url+"/"+damageId, { 
-  method: 'DELETE' 
-}); 
+ 
+    fetch(url+"/"+damageId).then(response => {
+      return response.json();
+    }).then(data => {
+      console.log("Updating Damage:"+damageId);
+      
+      // Work with JSON data here
+      damageTitle.value=data.damageTitle;
+      description.value = data.description;
+      condition.value=data.condition;
+      changeformaction(damageId);
+      
+      
+    }).catch(err => {
+      // Do something for an error here
+      console.log("Error Reading data " + err);
+    });
+    
+    
 }
 
 
-fetch('/damages', {
-  method: 'put',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({
-    'name': 'Darth Vader',
-    'quote': 'I find your lack of faith disturbing.'
-  })
-})
+function changeformaction(damageID){
+  document.newForm.action = "http://localhost:3000/damages/"+damageID;
+}
+
+function updated(){
+
+ let container = document.getElementById("update-container");
+  let damagesList = document.getElementById("damageslist-container");
+  container.style.display = "none";
+  damagesList.style.display = "block";
+
+}
+
+
+
+function deleteDamage(Id){
+  console.log(Id);
+  return fetch(url + '/' + Id, {
+    method: 'delete'
+  }).then(response =>{
+    document.location.href = "http://localhost:3000/damages.html";
+  }
+  );
+}
+
+

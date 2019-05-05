@@ -16,18 +16,26 @@ passport.deserializeUser((id,done) =>{
 passport.use(
     new GoogleStrategy({
         // option for google strat
-        callbackURL:keys.absoluteURI+'/auth/google/redirect',
+        callbackURL:'/auth/google/redirect',
         clientID:keys.google.clientID,
         clientSecret:keys.google.clientSecret
 
     },(accessToken,refreshToken,profile,done) => {
-        let newUser = new User({
-            username:profile.displayName,
-            googleid:profile.id
-        });
-        done(null,newUser);
        
          //check if user is already in database
-      
+        User.findOne({googleid:profile.id}).then((currentUser) =>{
+            if(currentUser){
+                done(null,currentUser);
+            }
+            else{
+                new User({
+                    username:profile.displayName,
+                    googleid:profile.id
+                }).save().then((newUser) => {
+                    console.log(newUser);
+                    done(null,newUser);
+                });
+            }
+        });
     })
 );

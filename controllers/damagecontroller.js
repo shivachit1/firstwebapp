@@ -16,14 +16,14 @@ exports.create = (req, res) => {
     // Save damage in the database
     damage.save()
     .then(data => {
-        //res.send(data);
+        res.send(data);
+        console.log('saved');
+       
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating the damage."
         });
     });
-    console.log(value);
-   
     
 };
 
@@ -41,75 +41,63 @@ exports.findAll = (req, res) => {
 
 // Find a single damage with a damageID
 exports.findOne = (req, res) => {
-    newDamage.findById(req.params.damageId)
+    newDamage.findById(req.params.id)
     .then(damage => {
         if(!damage) {
             return res.status(404).send({
-                message: "damage not found with id " + req.params.damageId
+                message: "damage not found with id " + req.params.id
             });            
         }
         res.send(damage);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Damage not found with id " + req.params.damageId
+                message: "Damage not found with id " + req.params.id
             });                
         }
         return res.status(500).send({
-            message: "Error retrieving damage with id " + req.params.damageId
+            message: "Error retrieving damage with id " + req.params.id
         });
     });
 };
 
 // Update a damage identified by the damageId in the request
-exports.update = (req, res) => {
-    
-    // Find damage and update it with the request body
-    newDamage.findByIdAndUpdate(req.params.damageId, {
-        userID:req.userID,
-        damageTitle:req.body.damageTitle,
-        description:req.body.description,
-        condition:req.body.condition
-    }, {new: true})
-    .then(damage => {
-        if(!damage) {
-            return res.status(404).send({
-                message: "damage not found with id " + req.params.damageId
-            });
-        }
-        console.log(damage);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).send({
-                message: "damage not found with id " + req.params.damageId
-            });                
-        }
-        return res.status(500).send({
-            message: "Error updating damage with id " + req.params.damageId
-        });
-    });
-};
+    exports.update = (req, res) => {
 
+        const damage = {
+            userID:req.session.token,
+            damageTitle:req.body.damageTitle,
+            description:req.body.description,
+            condition:req.body.condition
+          
+        };
+      
+        newDamage.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: damage },
+          { new: true }
+        ).then(damage => {
+            console.log('updated');
+            res.send('Damage has been updated with ID: '+damage._id);
+            
+      });
+      
+    }
 // Delete a damage with the specified damageId in the request
 exports.delete = (req, res) => {
-    newDamage.findByIdAndRemove(req.params.damageId)
-    .then(damage => {
-        if(!damage) {
-            return res.status(404).send({
-                message: "Damage not found with id " + req.params.damageId
-            });
-        }
-        res.send({message: "Damage deleted successfully!"});
-    }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
-                message: "Damage not found with id " + req.params.damageId
-            });                
-        }
-        return res.status(500).send({
-            message: "Could not delete damage with id " + req.params.damageId
-        });
-    });
+    const id = req.params.id;
+    newDamage.findOneAndDelete(id)
+      .exec()
+      .then(()=> {
+        res.status(204).json({
+            success: true,
+            message: 'Todo deleted successfuly'
+          });
+      }
+      )
+      .catch((err) => res.status(500).json({
+        success: false,
+      }));
 };
 
 

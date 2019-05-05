@@ -5,7 +5,7 @@ const Schema =mongoose.Schema;
 const damageSchema = new Schema({
     userID:{
         type:String,
-        required:true
+       
     },
     damageTitle:{
         type:String,

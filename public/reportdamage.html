@@ -3,8 +3,7 @@
 
         <head>    
         <link rel="stylesheet" type="text/css" href="mystyle.css">
-        <script src="damages.js">
-        </script>
+        <script type ="text/javascript" src="damages.js"></script>
          
 </head>
 <body>
@@ -29,18 +28,25 @@
                         <a id="link1" href = "damages.html">Show Damages List</a></br>
                         <a id="link2" href = "reportdamage.html">Submit other Damage</a>
                 </div>
-                <form id="damageform" action="/damages" method="POST">
-                    Title:<br>
-                    <input type="text" name="damageTitle" id="damageTitle" placeholder="Damage Title" required>
-                    <br>
-                    Description:<br>
-                    <input type="text" name="description" id="description" placeholder="Description" required>
-                    <br>
-                    Condition:<br>
-                    <input type="text" name="condition" id="condition" placeholder="low/medium/high" required>
-                    <br><br>
-                    <input type="submit" value="SEND POST" onclick="showThankyou()">
-                  </form> 
+                
+                                <form id="damageform"  action="/damages" method="POST">
+                                        Title:<br>
+                                        <input type="text" name="damageTitle" id="damageTitle" placeholder="Damage Title" required>
+                                        <br>
+                                        Description:<br>
+                                        <input type="text" name="description" id="description" placeholder="Description" required>
+                                        <br>
+                                        Condition:<br>
+                                        <select name="condition" id="condition">
+                                                    <option value="low">Low</option>
+                                                    <option value="medium">Medium</option>
+                                                    <option value="high">high</option>
+                    
+                                                  </select><br><br>
+                                        <input type="submit" value="SEND POST" onclick="showThankyou()">
+                                      </form> 
+                
+                
         </div>
 </div>
 <div class="footer">
@@ -49,5 +55,6 @@
 
  
 </body>
+
 
 </html>

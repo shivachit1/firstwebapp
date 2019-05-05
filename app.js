@@ -23,8 +23,6 @@ mongoose.connect(keys.MONGODB_URI,{ useNewUrlParser: true }, (err) => {
     }
     
 });
-
-
 //To extract form data, middleware is used, provided by Express
 app.use(express.urlencoded({ extended: false }));
 

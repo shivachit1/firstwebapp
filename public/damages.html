@@ -19,10 +19,35 @@
                                         <li><a href="reportdamage.html">Report Damage</a></li>
                                       </ul> 
         </div>
-            <h2>Damages List</h2>
-            <ul id="damages">
-                    
-            </ul> 
+        <div>
+            <div id="update-container" class="form">
+                    <h4 id="header">Update Damage</h4> 
+                    <form id="update-form" name="newForm"  method="POST" >
+                        Title:<br>
+                        <input type="text" name="damageTitle" id="damageTitle" placeholder="Damage Title" required>
+                        <br>
+                        Description:<br>
+                        <input type="text" name="description" id="description" placeholder="Description" required>
+                        <br>
+                        Condition:<br>
+                        <select name="condition" id="condition">
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">high</option>
+    
+                                  </select><br><br>
+                        <input type="submit" value="Update" onsubmit="updated()">
+                      </form> 
+            </div>
+            <div id="damageslist-container">
+                    <h2>Damages List</h2>
+                    <ul id="damages">
+                            
+                    </ul> 
+            </div>
+                
+        </div>
+           
     
 <div class="footer">
     <h6>Damage Reporter Web Application</h6>

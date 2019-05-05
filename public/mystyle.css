@@ -30,7 +30,10 @@ ul#menu li {
     margin:20px;
     padding: 5px;
   }
-
+ 
+  #update-container{
+    display:none
+  }
  
  .footer {
     bottom:10px;

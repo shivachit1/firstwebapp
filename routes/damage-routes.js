@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const damageController = require('../controllers/damagecontroller');
+const newDamage = require('../models/damage');
 
 // Create a new Damage
 router.post('/', damageController.create);
@@ -8,12 +9,13 @@ router.post('/', damageController.create);
 router.get('/', damageController.findAll);
 
 // Retrieve a single Damage with damageId
-router.get('/:damageId', damageController.findOne);
+router.get('/:id', damageController.findOne);
 
 // Update a Damage with damageId
-router.put('/:damageId', damageController.update);
+router.post('/:id', damageController.update);
+
 
 // Delete a Damage with damageId
-router.delete('/:damageId', damageController.delete);
+router.delete('/:id', damageController.delete);
 
 module.exports = router;
